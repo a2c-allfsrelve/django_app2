@@ -16,3 +16,22 @@ p{
 a{
     text-decoration: none;
 }
+
+table { 
+    margin: 10px;
+    font-size:14pt;
+}
+
+th {
+    background-color: #009;
+    color:white;
+    padding : 2px 10px;
+    border-width: 2px;
+}
+
+td{
+    background-color: #eee;
+    color:#666;
+    padding : 2px 10px;
+    border-width: 2px;
+}
