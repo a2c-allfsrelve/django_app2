@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .forms import FriendForm
+from .forms import FindForm
+from .forms import Friend
 from .models import Friend
 from django.shortcuts import redirect
 
@@ -56,3 +58,25 @@ def delete(request, num):
         'obj': friend,
     }
     return render(request, 'db_training/delete.html', params)
+
+def find(request):
+    if(request.method == 'POST'):
+        msg = '結果'
+        form = FindForm(request.POST)
+        str = request.POST['find']
+        data = Friend.objects.filter(name__contains=str)
+    else:
+        msg = 'なにさがしてるん'
+        form = FindForm()
+        data = Friend.objects.all()
+    params = {
+        'title': 'Hello',
+        'message': 'msg',
+        'data': data,
+        'form': form
+    }
+    return render(request, 'db_training/find.html', params)
+
+
+        
+

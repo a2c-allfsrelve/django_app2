@@ -7,6 +7,9 @@ class FriendForm(forms.ModelForm):
         model = Friend
         fields = ['name', 'mail', 'gender', 'age', 'birthday']
 
+class FindForm(forms.Form):
+    find = forms.CharField(label='Find', required=False)
+
 
 
 # class HelloForm(forms.Form):
