@@ -7,6 +7,7 @@ from .forms import Friend
 from .models import Friend
 from django.shortcuts import redirect
 from django.db.models import Count, Sum, Avg, Min, Max
+from .forms import CheckForm
 
 def index(request):
     data = Friend.objects.all().order_by('id')
@@ -72,6 +73,7 @@ def delete(request, num):
     }
     return render(request, 'db_training/delete.html', params)
 
+
 def find(request):
     if(request.method == 'POST'):
         msg = request.POST['find']
@@ -92,6 +94,32 @@ def find(request):
         'form': form
     }
     return render(request, 'db_training/find.html', params)
+
+
+def check(request):
+    params = {
+        'title': 'Hello',
+        'message': 'ばりでーしょん',
+        'form': FriendForm(),
+        
+        
+    }
+    if(request.method == 'POST'):
+        # form = CheckForm(request.POST)
+
+        obj = Friend()
+        form = FriendForm(request.POST, instance=obj)
+        params['form'] = form
+        if(form.is_valid()):
+            params['message'] = 'OK'
+        else:
+            params['message'] = 'no good'
+        
+    return render(request, 'db_training/check.html', params)
+    
+
+
+
 
 
         
